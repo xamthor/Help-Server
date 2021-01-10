@@ -14,18 +14,33 @@ export default {
         });
     }
     
-    const connection = new Connection({
-    	user_id: req.user.id,
-    	connection_user: req.body.connection_user
-    });
-    connection.save()
-    .then(data => {
-        res.send(data);
+    let count = await Connection.where({ user_id: req.user.id,  connection_user: req.body.connection_user}).count().then(data => {
+        return data;
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while creating the Status.",
+            message: err.message || "Some error occurred while retrieving notes."
         });
     });
+    console.log(count);
+    if (count >= 1) {
+        res.send({
+            message: "connection already exist"
+        });
+    }else{ 
+
+        const connection = new Connection({
+        	user_id: req.user.id,
+        	connection_user: req.body.connection_user
+        });
+        connection.save()
+        .then(data => {
+            res.send(data);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the Status.",
+            });
+        });
+    }
 },
 
 all: async (req, res) => {
