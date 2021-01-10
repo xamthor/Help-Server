@@ -32,11 +32,7 @@ export default {
         if(statusdata !== null){
             feed.push(statusdata);
         }
-    	console.log(statusdata);
     }
-
-    console.log(feed);
-
     res.status(200).json(feed);
   },
 };
