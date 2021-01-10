@@ -21,7 +21,6 @@ export default {
             message: err.message || "Some error occurred while retrieving notes."
         });
     });
-    console.log(count);
     if (count >= 1) {
         res.send({
             message: "connection already exist"
