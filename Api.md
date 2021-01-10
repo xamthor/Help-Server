@@ -176,7 +176,7 @@ returns array of user objects
 
 **Feed**
 
-/feed/all
+GET: /feed/all
 
 `[
     {

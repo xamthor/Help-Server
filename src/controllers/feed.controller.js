@@ -28,9 +28,11 @@ export default {
 	            message: err.message || "Some error occurred while retrieving the feed."
 	        });
 	    });
-    	console.log(statusdata);
 
-	    feed.push(statusdata);
+        if(statusdata !== null){
+            feed.push(statusdata);
+        }
+    	console.log(statusdata);
     }
 
     console.log(feed);
