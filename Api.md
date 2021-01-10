@@ -178,6 +178,29 @@ returns array of user objects
 
 /feed/
 
+`{
+    "status": "success",
+    "data": [
+        [
+            {
+                "_id": "",
+                "user_id": {
+                    "phoneNumber": "",
+                    "firstName": "",
+                    "lastName": "",
+                    "_id": "",
+                    "email": "",
+                    "userName": "",
+                    "__v": 0
+                },
+                "content": "status message",
+                "timestamp": "2021-01-10T05:23:26.505Z",
+                "__v": 0
+            }
+        ]
+    ]
+}`
+
 **Message**
 
 /message/
