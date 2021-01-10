@@ -20,7 +20,7 @@ export default {
     let feed = [];
 
     for(let data of connections){
-    	let statusdata = await Status.find({ user_id: data.connection_user}).populate('user_id').sort({$natural:-1})
+    	let statusdata = await Status.findOne({ user_id: data.connection_user}).populate('user_id').sort({$natural:-1})
 	    .then(data => {
     		return data;
 	    }).catch(err => {
@@ -28,12 +28,13 @@ export default {
 	            message: err.message || "Some error occurred while retrieving the feed."
 	        });
 	    });
+    	console.log(statusdata);
+
 	    feed.push(statusdata);
     }
 
-    res.status(200).json({
-      status: "success",
-      data:  feed,
-    });
+    console.log(feed);
+
+    res.status(200).json(feed);
   },
 };
