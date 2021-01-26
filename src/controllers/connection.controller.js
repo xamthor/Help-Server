@@ -14,7 +14,7 @@ export default {
         });
     }
     
-    let count = await Connection.where({ user_id: req.user.id,  connection_user: req.body.connection_user}).count().then(data => {
+    let count = await Connection.where({ user_id: req.user.id,  connection_user: req.body.connection_user}).countDocuments().then(data => {
         return data;
     }).catch(err => {
         res.status(500).send({
@@ -66,19 +66,19 @@ topfive: async (req, res) => {
 },
 
 add: async (req, res) => {
-    let count = await Connection.where({ user_id: req.user.id,  connection_user: req.body.connection_user, star: true }).count().then(data => {
+    let count = await Connection.where({ user_id: req.user.id, star: true }).countDocuments().then(data => {
         return data;
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving notes."
         });
     });
-    if (count > 5) {
+    if (count > 4) {
         res.send({
             message: "You reach the limit"
         });
     }else{
-        Connection.where({ connection_user: req.body.connection_user}).update({star: true})
+        Connection.where({ user_id: req.user.id, connection_user: req.body.connection_user}).updateOne({star: true})
         .then(data => {
             res.send({message: "succes" ,data: data, count: count});
         }).catch(err => {
@@ -91,7 +91,6 @@ add: async (req, res) => {
 },
 
 remove: async (req, res) => {
-
     Connection.find({ user_id: req.user.id, connection_user: req.body.connection_user }).update({ star: false})
     .then(data => {
         res.send(data);

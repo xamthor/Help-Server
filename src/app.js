@@ -12,7 +12,7 @@ import searchRouter from "./routes/search.route";
 import messageRouter from "./routes/message.route";
 import conversation from "./routes/conversation.route";
 import connection from "./routes/connection.route";
-import feed from "./routes/feed.route";
+import feedRouter from "./routes/feed.route";
 
 import cors from "cors";
 
@@ -36,7 +36,7 @@ app.use('/status', statusRouter);
 app.use('/message', messageRouter);
 app.use('/conversation', conversation);
 app.use('/connection', connection);
-app.use('/feed', feed);
+app.use('/feed', feedRouter);
 app.use('/', searchRouter);
 
 app.get("/", (_, res) => {

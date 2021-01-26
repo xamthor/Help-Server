@@ -20,4 +20,12 @@ Don't add passphrase
 
 **start the server and watch for changes**
 
-`Run npm run dev `
+Dev
+
+`npm run dev `
+
+Pro
+
+`npm run build `
+
+`npm run start `
